@@ -25,11 +25,12 @@ tf.logging.set_verbosity(tf.logging.INFO)
 
 def cnn_model(features,mode,name=None):
   """Model function for CNN.
-  >>> xdat = tf.zeros([10,784,1],name="x")
+  >>> batch = 7
+  >>> xdat = tf.zeros([batch,784],name="x")
   >>> cnn_model({'x':xdat},tf.estimator.ModeKeys.TRAIN,"cnnt")
-  <tf.Tensor 'cnnt/BiasAdd:0' shape=(10, 10) dtype=float32>
+  <tf.Tensor 'cnnt/BiasAdd:0' shape=(7, 10) dtype=float32>
   >>> cnn_model({'x':xdat},tf.estimator.ModeKeys.PREDICT,"cnnp")
-  <tf.Tensor 'cnnp/BiasAdd:0' shape=(10, 10) dtype=float32>
+  <tf.Tensor 'cnnp/BiasAdd:0' shape=(7, 10) dtype=float32>
   """
   # Input Layer
   # Reshape X to 4-D tensor: [batch_size, width, height, channels]
@@ -96,8 +97,9 @@ def cnn_model(features,mode,name=None):
 
 def cnn_model_fn(features, labels, mode):
   """Model function for CNN.
-  >>> xdat = tf.zeros([10,784,1],name="x")
-  >>> ydat = tf.zeros([10,1],name="y",dtype=tf.int32)
+  >>> batch = 7
+  >>> xdat = tf.zeros([batch,784],name="x")
+  >>> ydat = tf.zeros([batch],name="y",dtype=tf.int32)
   >>> cnn_model_fn({'x':xdat},ydat,tf.estimator.ModeKeys.TRAIN)
   EstimatorSpec...
   """
@@ -137,6 +139,10 @@ def main(unused_argv):
   mnist = tf.contrib.learn.datasets.load_dataset("mnist")
   train_data = mnist.train.images  # Returns np.array
   train_labels = np.asarray(mnist.train.labels, dtype=np.int32)
+  print(train_data.dtype)
+  print(train_labels.dtype)
+  print(train_data.shape)
+  print(train_labels.shape)
   eval_data = mnist.test.images  # Returns np.array
   eval_labels = np.asarray(mnist.test.labels, dtype=np.int32)
 
