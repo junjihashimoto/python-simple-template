@@ -33,19 +33,6 @@ LSTMStateTuple(c=<tf.Tensor '...' shape=(7, 128) dtype=float32>, h=<tf.Tensor '.
 >>> states
 (LSTMStateTuple(c=<tf.Tensor '...' shape=(7, 128) dtype=float32>, h=<tf.Tensor '...' shape=(7, 128) dtype=float32>), LSTMStateTuple(c=<tf.Tensor '...' shape=(7, 128) dtype=float32>, h=<tf.Tensor '...' shape=(7, 128) dtype=float32>))
 
->>> vocab_size = 20000
->>> embedding_size = 16
->>> word_embedding = tf.get_variable("embeddings", [vocab_size , embedding_size])
->>> word_embedding
-<tf.Variable 'embeddings:...' shape=(20000, 16) dtype=float32_ref>
->>> decoder_input = tf.zeros([batch],name="input",dtype=tf.int64)
->>> embedded_input = tf.nn.embedding_lookup(word_embedding, decoder_input)
->>> embedded_input
-<tf.Tensor 'embedding...' shape=(7, 16) dtype=float32>
->>> helper = tf.contrib.seq2seq.TrainingHelper(embedded_input, [7])
->>> helper
-
-
 """
 import numpy as np
 import tensorflow as tf
