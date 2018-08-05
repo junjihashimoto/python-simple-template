@@ -31,6 +31,11 @@ def cnn_model(features,mode,name=None):
   <tf.Tensor 'cnnt/BiasAdd:0' shape=(7, 10) dtype=float32>
   >>> cnn_model({'x':xdat},tf.estimator.ModeKeys.PREDICT,"cnnp")
   <tf.Tensor 'cnnp/BiasAdd:0' shape=(7, 10) dtype=float32>
+  >>> rdat = cnn_model({'x':xdat},tf.estimator.ModeKeys.TRAIN,"cnnt")
+  >>> rdat.shape
+  (7,10)
+  >>> rdat.dtype
+  tf.float32
   """
   # Input Layer
   # Reshape X to 4-D tensor: [batch_size, width, height, channels]
